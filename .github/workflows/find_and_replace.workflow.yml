@@ -1,0 +1,25 @@
+name: Find and Replace Test
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy environtment
+        run: |
+          cp .env.example .env.master
+          cat .env.master
+      - name: Find and Replace Name
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: "name"
+          replace: ${{ secrets.NAME }}
+          include: ".env.master"
+      - name: Find and Replace Test
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: "test"
+          replace: "Replace to test text"
+          include: ".env.master"
+      - name: Check ENV
+        run: cat .env.master
