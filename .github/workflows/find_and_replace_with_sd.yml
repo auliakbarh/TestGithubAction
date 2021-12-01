@@ -17,6 +17,6 @@ jobs:
           sd 'test' $TEST .env.master
         env:
           NAME: ${{ secrets.NAME }}
-          TEST: "Replace to test text with sd"
+          TEST: "Replace-to-test-text-with-sd"
       - name: Check ENV
         run: cat .env.master
