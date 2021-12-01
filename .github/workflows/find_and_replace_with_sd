@@ -1,0 +1,22 @@
+name: Find and Replace With SD Test
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy environtment
+        run: |
+          cp .env.example .env.master
+          cat .env.master
+      - name: Install s[earch] & d[isplace]
+        run: brew install sd
+      - name: Find and Replace
+        run: |
+          sd 'name' $NAME .env.master
+          sd 'test' $NAME .env.master
+        env:
+          NAME: ${{ secrets.NAME }}
+          TEST: 'Replace to test text with sd'
+      - name: Check ENV
+        run: cat .env.master
