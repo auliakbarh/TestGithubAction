@@ -14,7 +14,7 @@ jobs:
       - name: Find and Replace
         run: |
           sd 'name' $NAME .env.master
-          sd 'test' $NAME .env.master
+          sd 'test' $TEST .env.master
         env:
           NAME: ${{ secrets.NAME }}
           TEST: 'Replace to test text with sd'
